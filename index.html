@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>ParkingSystem</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="name" placeholder="Digite o nome do veículo" autocomplete="off">
+        <input type="text" id="licence" placeholder="Digite a placa do veículo" autocomplete="off">
+        <label for="position">Escolha a posição:</label>
+        <select id="position">
+            <option value="1">Posição 1</option>
+            <option value="2">Posição 2</option>
+            <option value="3">Posição 3</option>
+            <option value="4">Posição 4</option>
+            <option value="5">Posição 5</option>
+            <option value="6">Posição 6</option>
+            <option value="7">Posição 7</option>
+            <option value="8">Posição 8</option>
+            <option value="9">Posição 9</option>
+            <option value="10">Posição 10</option>
+            <!-- Adicione mais opções -->
+        </select>
+        <button id="send">Cadastrar</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Placa</th>
+                    <th>Estado</th>
+                    <th>Horário</th>
+                    <th>Posição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="garagem"></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
