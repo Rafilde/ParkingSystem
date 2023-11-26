@@ -1,8 +1,33 @@
 function convertPeriod(mil){
     const min = Math.floor(mil / 60000); 
+    const hours = Math.floor(min / 60)
     let sub = (mil/60000) - min; 
     const second = Math.floor(sub*60);
-    return `${min}m e ${second}s`;
+    let price = finalValue(hours, min,);
+    return `${hours}h ${min}m e ${second}s` + price;
+}
+function finalValue(h, m) {
+    if(h == 0 && m <= 15) {
+        return `Valor cobrado: gratuito`;
+    } else if (h == 0 && m > 15) {
+        return `Valor cobrado: R$` + 10;
+    } else if ( h == 1) {
+        if(m >= 0 && m <= 15) {
+            return `Valor cobrado: R$` + (10 + 3);
+        } else if(m > 15 && m <= 30) {
+            return `Valor cobrado: R$` + (10 + 5);
+        } else if(m > 30 && m <= 59) {
+            return `Valor cobrado: R$` + (10 + 7);
+        }
+    } else if (h > 1) {
+        if(m >= 0 && m <= 15) {
+            return `Valor cobrado: R$` + (10 + 3 + (h * 3));
+        } else if(m > 15 && m <= 30) {
+            return `Valor cobrado: R$` + (10 + 5 + (h * 3));
+        } else if(m > 30 && m <= 59) {
+            return `Valor cobrado: R$` + (10 + 7 + (h * 3));
+        }
+    }
 }
 
 function renderGarage() {
@@ -23,10 +48,10 @@ const getGarage = () => localStorage.garage ? JSON.parse(localStorage.garage) : 
 
 function checkOut(info) {
     const licence = info[1].textContent;
-    /*let period = new Date() - new Date(info[2].dataset.time);
-    period = convertPeriod(period);*/
-    let msg = `O veículo ${info[0].textContent} de placa ${licence} COLOCAR VALOR. Deseja encerrar?`;
-    /*let msg = `O veículo ${info[0].textContent} de placa ${licence} permaneceu estacionado por ${period}. Deseja encerrar?`;*/ 
+    let period = new Date() - new Date(info[3].dataset.time);
+    //let price = finalValue(period);
+    period = convertPeriod(period);
+    let msg = `O veículo ${info[0].textContent} de placa ${licence} permaneceu estacionado por ${period}. Deseja encerrar?`; 
     if (!confirm(msg)) return;
     const garage = getGarage().filter(c => c.licence !== licence); 
     localStorage.garage = JSON.stringify(garage); 
